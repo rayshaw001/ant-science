@@ -32,9 +32,7 @@ class HeadeBar extends Component {
     return (
       <Box>
         <Header justify='between' pad={{ horizontal: 'medium', vertical: 'small' }} className='headBar'>
-          <Title>
-            Ant Science
-          </Title>
+          <Anchor path='/home' label='Ant Science' style={{ fontSize: '24' }} />
           {links}
           <Search inline={true} fill={true} size='medium' placeHolder='输入想搜索的关键字' style={SearchStyle} />
           <SessionMenu ref={this.sessionMenu} login={login} style={SessionMenuStyle} />
