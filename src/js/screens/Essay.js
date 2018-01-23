@@ -18,6 +18,9 @@ export default class Essay extends Component {
   }
   render() {
     const { article } = this.state;
+    if (!article) {
+      return null;
+    }
     return (
       <Article>
         <Section pad='large' justify='center' align='center'>
