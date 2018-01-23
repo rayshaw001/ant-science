@@ -13,7 +13,8 @@ import Task from '../screens/Task';
 import NotFound from '../screens/NotFound';
 import Home from '../screens/Home';
 import HeadeBar from './HeadeBar';
-import Acticle from '../screens/Acticle';
+import Essay from '../screens/Essay';
+import AddEssay from '../screens/AddEssay';
 
 import { Box } from 'grommet';
 
@@ -55,7 +56,8 @@ class Main extends Component {
               <Route path='/login' component={Login} />
               <Route path='/tasks/:id' component={Task} />
               <Route path='/tasks' component={Tasks} />
-              <Route path='/article/:id' component={Acticle} />
+              <Route path='/article/:id' component={Essay} />
+              <Route path='/addEssay' component={AddEssay} />
               <Route path='/*' component={NotFound} />
             </Switch>
             {showLogin && <LoginLayer onClose={onClose} />}

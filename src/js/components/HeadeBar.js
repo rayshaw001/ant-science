@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
 import Header from 'grommet/components/Header';
-import Title from 'grommet/components/Title';
 import Anchor from 'grommet/components/Anchor';
-import { Box, Search } from 'grommet';
+import { Box, Button, Search } from 'grommet';
 import SessionMenu from './SessionMenu';
+import AddIcon from 'grommet/components/icons/base/Add';
 
 
 class HeadeBar extends Component {
@@ -19,12 +19,9 @@ class HeadeBar extends Component {
   }
 
   render() {
-    const { nav: { items }, redirect, login } = this.state;
+    const { nav: { items },  login } = this.state;
     const SessionMenuStyle = { margin: '20' };
     const SearchStyle = { backgroundColor: '#ffffff' };
-    if (redirect) {
-      return <Redirect push to='/home' />;
-    }
     const links = items.map(page => (
       <Anchor key={page.label} path={page.path} label={page.label} className='headBarAnchor' />
     ));
@@ -36,6 +33,7 @@ class HeadeBar extends Component {
           {links}
           <Search inline={true} fill={true} size='medium' placeHolder='输入想搜索的关键字' style={SearchStyle} />
           <SessionMenu ref={this.sessionMenu} login={login} style={SessionMenuStyle} />
+          <Button icon={<AddIcon />}  />
         </Header>
       </Box>
 

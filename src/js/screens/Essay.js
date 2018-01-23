@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios/index';
-import { Article, Section, Headline } from 'grommet';
+import { Section, Headline } from 'grommet';
 // import {Editor, EditorState} from 'draft-js';
 
-export default class Acticle extends Component {
+export default class Essay extends Component {
   constructor(props) {
     super(props);
     this.state = this.props;
