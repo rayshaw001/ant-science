@@ -25,8 +25,7 @@ class NotFound extends Component {
         <Headline strong={true}>404</Headline>
         <Heading>Oops...</Heading>
         <Paragraph size='large' align='center'>
-          It seems that you are in the wrong route. Please check your URL and
-          try again.
+          It seems that you are in the wrong route. Please check your URL and try again.
         </Paragraph>
       </Box>
     );
