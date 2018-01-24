@@ -15,8 +15,11 @@ export default class AddEssay extends Component {
     const BoxStyle = { width: '80%' };
     return (
       <Box style={BoxStyle} align='center' >
-        <Label> 标题 </Label><TextInput />
-        <Editor editorState={this.state.editorState} onChange={this.onChange} />
+        <Box direction='column'>
+          <Box direction='row'><Label> 标题: </Label><TextInput name='title' /></Box>
+          <Editor editorState={this.state.editorState} onChange={this.onChange} />
+        </Box>
+
       </Box>
 
     );
