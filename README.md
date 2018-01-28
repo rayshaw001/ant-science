@@ -8,6 +8,7 @@ To run this application, execute the following commands:
 
     ```
     $ npm install (or yarn install)
+    or npm install --registry=https://registry.npm.taobao.org
     ```
 
   2. Start the back-end server:
