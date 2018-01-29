@@ -15,17 +15,8 @@ import _ from 'lodash';
 class Essay extends Component {
     constructor(props) {
       super(props);
-      this.sampleArticle={
-        author:'rayshaw',
-        title:'Hello Ant Science',
-        content:['Biographies of world leaders, including U.S. President Donald Trump,' + 
-        ' South Korean President Moon Jae-in, and French President Emmanuel Macron, ' + 
-        'have become best sellers in China.','MD5:pics','hello'],
-        time:'2018-01-02 09:31'
-      };
       this.state = { 
-        props:this.props,
-        article:this.sampleArticle
+        props:this.props
       };
     }
 
