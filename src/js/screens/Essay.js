@@ -32,9 +32,8 @@ class Essay extends Component {
     componentWillMount() {
       let setState = this.setState.bind(this);
       let state = this.state;
-      let subPath = new String(state.props.location.pathname);
-      let url = 'http://39.104.87.44:8017/getArticle' + subPath.substr(subPath.lastIndexOf('/'));
-      console.log({"mount":state});
+      let id = this.state.props.match.params.id;
+      let url = 'http://39.104.87.44:8017/getArticle/' + id;
       axios.post(url, null, {
         headers: {
               'Content-Type': 'application/x-www-form-urlencoded'
@@ -62,9 +61,11 @@ class Essay extends Component {
     }
   
     render() {
-      console.log({"render":this.state});
       const { nav: { items }, redirect, login } = this.state.props;
       let {article} = this.state;
+      if(!article){
+        return null; 
+      }
       if (redirect) {
         return <Redirect push to='/home' />;
       }
@@ -77,15 +78,12 @@ class Essay extends Component {
       let note = null;
 
       let content = article.content.map((c,i) => {
-        console.log(c);
-        console.log(_.startsWith(c,"data:image/jpeg;base64"));
         if(c&&_.startsWith(c,"data:image/jpeg;base64")){
         return (<Paragraph key={i} className="paragraph"><Image className="image" src={c} /> {note &&<p className="note">{note}</p>}</Paragraph>);
         } else {
         return (<Paragraph key={i} className="paragraph">{c}</Paragraph>);
         }
       });
-      console.log(content);
       return (
         <Article className="essay">
           <Section className="border">  
