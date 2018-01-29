@@ -15,26 +15,16 @@ import _ from 'lodash';
 class Essay extends Component {
     constructor(props) {
       super(props);
-      this.sampleArticle={
-        author:'rayshaw',
-        title:'Hello Ant Science',
-        content:['Biographies of world leaders, including U.S. President Donald Trump,' + 
-        ' South Korean President Moon Jae-in, and French President Emmanuel Macron, ' + 
-        'have become best sellers in China.','MD5:pics','hello'],
-        time:'2018-01-02 09:31'
-      };
       this.state = { 
-        props:this.props,
-        article:this.sampleArticle
+        props:this.props
       };
     }
 
     componentWillMount() {
       let setState = this.setState.bind(this);
       let state = this.state;
-      let subPath = new String(state.props.location.pathname);
-      let url = 'http://39.104.87.44:8017/getArticle' + subPath.substr(subPath.lastIndexOf('/'));
-      console.log({"mount":state});
+      let id = this.state.props.match.params.id;
+      let url = 'http://39.104.87.44:8017/getArticle/' + id;
       axios.post(url, null, {
         headers: {
               'Content-Type': 'application/x-www-form-urlencoded'
@@ -62,9 +52,11 @@ class Essay extends Component {
     }
   
     render() {
-      console.log({"render":this.state});
       const { nav: { items }, redirect, login } = this.state.props;
       let {article} = this.state;
+      if(!article){
+        return null; 
+      }
       if (redirect) {
         return <Redirect push to='/home' />;
       }
@@ -77,15 +69,12 @@ class Essay extends Component {
       let note = null;
 
       let content = article.content.map((c,i) => {
-        console.log(c);
-        console.log(_.startsWith(c,"data:image/jpeg;base64"));
         if(c&&_.startsWith(c,"data:image/jpeg;base64")){
         return (<Paragraph key={i} className="paragraph"><Image className="image" src={c} /> {note &&<p className="note">{note}</p>}</Paragraph>);
         } else {
         return (<Paragraph key={i} className="paragraph">{c}</Paragraph>);
         }
       });
-      console.log(content);
       return (
         <Article className="essay">
           <Section className="border">  
@@ -97,7 +86,7 @@ class Essay extends Component {
           <Section>
             {content}
           </Section>
-          <Section>
+          <Section className="border">
 
           </Section>
         </Article>
